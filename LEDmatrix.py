@@ -32,10 +32,13 @@ class App(SampleBase):
     def initializeDataPoints(self):
         self.dpList=[]
         positions = [x for x in range(MATRIXLENGTH)]
-        p = positions.pop(random.choice([positions]))
+        p = positions.pop(random.choice(positions))
         for v in range(MATRIXLENGTH):
             self.dpList.append(DataPoint(v,p))
 
-
+if __name__ == "__main__":
+    app = App()
+    if (not app.process()):
+        app.print_help()
 
 
