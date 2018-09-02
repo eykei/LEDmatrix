@@ -22,18 +22,23 @@ class App(SampleBase):
         while True:
             for dp in self.dpList:
                 self.draw(dp)
-                self.matrix.SwapOnVSync(self.canvas)
+                
+            self.matrix.SwapOnVSync(self.canvas)
+            time.sleep(1)
 
     def draw(self, datapoint):
-        for y in range(datapoint.value):
-            self.canvas.SetPixel(datapoint.position, y, 255,255,255)
+        for y in range(1, datapoint.value+1):
+            self.canvas.SetPixel(datapoint.position, 63-y, 200,200,200)
 
 
     def initializeDataPoints(self):
         self.dpList=[]
         positions = [x for x in range(MATRIXLENGTH)]
-        p = positions.pop(random.choice(positions))
+        
         for v in range(MATRIXLENGTH):
+            p = random.choice(positions)
+            positions.remove(p)
+            
             self.dpList.append(DataPoint(v,p))
 
 if __name__ == "__main__":
