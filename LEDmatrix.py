@@ -20,11 +20,16 @@ class App(SampleBase):
         self.initializeDataPoints()
 
         while True:
+            print("Drawing")
+            self.canvas.Clear()
             for dp in self.dpList:
                 self.draw(dp)
-            self.matrix.SwapOnVSync(self.canvas)
-            dpList = self.bubbleSortStep(self.dpList)
-            time.sleep(1)
+            print("Displaying")
+            
+            self.canvas = self.matrix.SwapOnVSync(self.canvas)
+            
+            self.bubbleSortStep()
+            time.sleep(0.5)
 
     def draw(self, datapoint):
         for y in range(1, datapoint.value+1):
@@ -38,15 +43,22 @@ class App(SampleBase):
             p = random.choice(positions)
             positions.remove(p)
             self.dpList.append(DataPoint(v,p))
+        
+        for x in range(len(self.dpList)):
+            print(self.dpList[x].value, self.dpList[x].position)
+        self.dpList.sort(key = lambda x: x.position)
+        for x in range(len(self.dpList)):
+            print(self.dpList[x].value, self.dpList[x].position)
+        input()
 
-    def bubbleSortStep(self,dpList):
-        for i in range(len(dpList)-1):
-            if dpList[i].value > dpList[i+1].value:
-                dpList[i], dpList[i+1] = dpList[i+1], dpList[i]
-        return dpList
-
-
-
+    def bubbleSortStep(self):
+        n = 1
+        for i in range(MATRIXLENGTH-n):
+            n+=1
+            if self.dpList[i].value > self.dpList[i+1].value:
+                print(self.dpList[i].value, self.dpList[i+1].value)
+                #self.dpList[i].position, self.dpList[i+1].position = self.dpList[i+1].position, self.dpList[i].position
+                self.dpList[i].value, self.dpList[i+1].value = self.dpList[i+1].value, self.dpList[i].value
 
 if __name__ == "__main__":
     app = App()
