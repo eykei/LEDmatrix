@@ -17,19 +17,18 @@ class App(SampleBase):
 
     def run(self):
         self.canvas = self.matrix.CreateFrameCanvas()
-        self.initializeDataPoints()
-
         while True:
-            print("Drawing")
-            self.canvas.Clear()
-            for dp in self.dpList:
-                self.draw(dp)
-            print("Displaying")
-            
-            self.canvas = self.matrix.SwapOnVSync(self.canvas)
-            
-            self.bubbleSortStep()
-            time.sleep(0.5)
+            self.initializeDataPoints()
+            while True:
+                prev_dpList=self.dpList
+                self.canvas.Clear()
+                for dp in self.dpList:
+                    self.draw(dp)
+                self.canvas = self.matrix.SwapOnVSync(self.canvas)
+                self.bubbleSortStep()
+                if self.dpList == prev_dpList:
+                    break
+                time.sleep(0.5)
 
     def draw(self, datapoint):
         for y in range(1, datapoint.value+1):
@@ -56,8 +55,6 @@ class App(SampleBase):
         for i in range(MATRIXLENGTH-n):
             n+=1
             if self.dpList[i].value > self.dpList[i+1].value:
-                print(self.dpList[i].value, self.dpList[i+1].value)
-                #self.dpList[i].position, self.dpList[i+1].position = self.dpList[i+1].position, self.dpList[i].position
                 self.dpList[i].value, self.dpList[i+1].value = self.dpList[i+1].value, self.dpList[i].value
 
 if __name__ == "__main__":
