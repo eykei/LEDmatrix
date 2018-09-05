@@ -1,9 +1,13 @@
 from samplebase import SampleBase
 import time, random
 
+# sudo python3 LEDmatrix.py --led-mapper="U-mapper" --led-chain=4
+
 MATRIXLENGTH=64
 #ACTIVE=(255,255,255)
 #INACTIVE=(255,0,0)
+WHITE=(255,255,255)
+RED=(255,0,0)
 
 class DataPoint():
     def __init__(self, value, position):
@@ -19,27 +23,25 @@ class App(SampleBase):
         self.canvas = self.matrix.CreateFrameCanvas()
         while True:
             self.initializeDataPoints()
-            self.canvas.Clear()
-            self.draw()
-            self.matrix.SwapOnVSync(self.canvas)
+            self.draw(WHITE)
             time.sleep(3)
             while True:
-                self.canvas.Clear()
-                self.draw()
-                self.matrix.SwapOnVSync(self.canvas)
+                self.draw(RED)
                 if self.isSorted():
                     time.sleep(5)
                     break
                 else:
-                    #self.bubbleSortStep()
-                    self.selectionSortStep()
+                    self.bubbleSortStep()
+                    #self.selectionSortStep()
                 time.sleep(0.1)
                 
 
-    def draw(self):
+    def draw(self, color):
+        self.canvas.Clear()
         for dp in self.dpList:
             for y in range(dp.value):
-                self.canvas.SetPixel(dp.position, 62-y, 200,200,200)
+                self.canvas.SetPixel(dp.position, 62-y, color[0],color[1],color[2])
+        self.matrix.SwapOnVSync(self.canvas)
 
     def initializeDataPoints(self):
         self.dpList=[]
@@ -56,7 +58,6 @@ class App(SampleBase):
             if self.dpList[i].value > self.dpList[i+1].value:
                 return False
         return True
-
 
     def bubbleSortStep(self):
         n = 1
