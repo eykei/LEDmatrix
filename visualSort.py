@@ -23,34 +23,38 @@ class App(SampleBase):
         self.canvas = self.matrix.CreateFrameCanvas()
         while True:
             self.initializeDataPoints()
-            self.draw(WHITE)
-            time.sleep(3)
             while True:
-                self.draw(RED)
                 if self.isSorted():
                     time.sleep(5)
                     break
                 else:
-                    self.bubbleSortStep()
-                    #self.selectionSortStep()
+                    self.bubbleSort()
+                    self.initializeDataPoints()
+                    self.selectionSortStep()
                     #self.insertionSort()
-                time.sleep(0.1)
+
                 
 
     def draw(self, color):
+        '''
+        draw each point in datapoint list (dpList)
+        '''
         self.canvas.Clear()
         for dp in self.dpList:
             for y in range(dp.value):
-                self.canvas.SetPixel(dp.position, 62-y, color[0],color[1],color[2])
+                self.canvas.SetPixel(dp.position, 62-y, color[0],color[1],color[2]) #dp.color
         self.matrix.SwapOnVSync(self.canvas)
+
 
     def initializeDataPoints(self):
         self.dpList=[]
-        val = [x for x in range(MATRIXLENGTH)]
+        values = [x for x in range(MATRIXLENGTH)]
         for p in range(MATRIXLENGTH):
-            v = random.choice(val)
-            val.remove(v)
-            self.dpList.append(DataPoint(v,p))
+            v = random.choice(values)
+            values.remove(v)
+            self.dpList.append(DataPoint(v, p))
+        self.draw(WHITE)
+        time.sleep(3)
         #self.dpList.sort(key = lambda x: x.position)
 
     def isSorted(self):
@@ -59,20 +63,26 @@ class App(SampleBase):
                 return False
         return True
 
-    def bubbleSortStep(self):
-        n = 1
-        for i in range(MATRIXLENGTH-n):
-            n+=1
-            if self.dpList[i].value > self.dpList[i+1].value:
-                self.dpList[i].value, self.dpList[i+1].value = self.dpList[i+1].value, self.dpList[i].value
+    def bubbleSort(self):
+        n = len(self.dpList)
+        for i in range(n):
+            self.draw(RED)
+            time.sleep(0.1)
+            for j in range(0, n-i-1):
+                if self.dpList[i].value > self.dpList[i+1].value:
+                    self.dpList[i].value, self.dpList[i+1].value = self.dpList[i+1].value, self.dpList[i].value
+        time.sleep(5)
                 
-    def selectionSortStep(self):
-        min_index = 0
-        for i in range(MATRIXLENGTH):
-            min = self.dpList[min_index].value
-            if self.dpList[i].value < min:
-                self.dpList[i].value, self.dpList[min_index].value = self.dpList[min_index].value, self.dpList[i].value
-                min_index += 1
+    def selectionSort(self):
+        for i in range(len(self.dpList)):
+            self.draw(RED)
+            time.sleep(0.1)
+            min_index = i
+            for j in range(i+1, len(self.dpList)):
+                if self.dpList[min_index].value > self.dpList[j].value:
+                    min_index = j
+            self.dpList[i].value, self.dpList[min_index] = self.dpList[min_index], self.dpList[i].value
+        time.sleep(5)
 
 if __name__ == "__main__":
     app = App()
