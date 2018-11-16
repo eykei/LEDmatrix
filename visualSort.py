@@ -30,7 +30,7 @@ class App(SampleBase):
                 else:
                     self.bubbleSort()
                     self.initializeDataPoints()
-                    self.selectionSortStep()
+                    self.selectionSort()
                     #self.insertionSort()
 
                 
