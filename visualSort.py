@@ -69,8 +69,8 @@ class App(SampleBase):
             for j in range(0, n-i-1):
                 self.draw(RED)
                 time.sleep(0.1)
-                if self.dpList[i].value > self.dpList[i+1].value:
-                    self.dpList[i].value, self.dpList[i+1].value = self.dpList[i+1].value, self.dpList[i].value
+                if self.dpList[j].value > self.dpList[j+1].value:
+                    self.dpList[j].value, self.dpList[j+1].value = self.dpList[j+1].value, self.dpList[j].value
 
         time.sleep(5)
                 
@@ -82,7 +82,7 @@ class App(SampleBase):
                 time.sleep(0.1)
                 if self.dpList[min_index].value > self.dpList[j].value:
                     min_index = j
-            self.dpList[i].value, self.dpList[min_index] = self.dpList[min_index], self.dpList[i].value
+            self.dpList[j].value, self.dpList[min_index] = self.dpList[min_index], self.dpList[j].value
         time.sleep(5)
 
 if __name__ == "__main__":
