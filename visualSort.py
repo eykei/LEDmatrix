@@ -8,6 +8,7 @@ MATRIXLENGTH=64
 #INACTIVE=(255,0,0)
 WHITE=(255,255,255)
 RED=(255,0,0)
+GREEN=(0,255,0)
 
 class DataPoint():
     def __init__(self, value, position): #add color
@@ -72,11 +73,11 @@ class App(SampleBase):
 
                 if self.dpList[j].value > self.dpList[j+1].value:
                     self.dpList[j].value, self.dpList[j+1].value = self.dpList[j+1].value, self.dpList[j].value
-
+        self.draw(GREEN)
         time.sleep(5)
                 
     def selectionSort(self):
-        for i in range(len(self.dpList)):
+        for i in range(0, len(self.dpList)-1):
             min_index = i
             self.draw(RED)
             time.sleep(0.1)
@@ -84,6 +85,7 @@ class App(SampleBase):
                 if self.dpList[min_index].value > self.dpList[j].value:
                     min_index = j
             self.dpList[j].value, self.dpList[min_index] = self.dpList[min_index], self.dpList[j].value
+        self.draw(GREEN)
         time.sleep(5)
 
 if __name__ == "__main__":
