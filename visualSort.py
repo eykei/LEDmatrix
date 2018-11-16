@@ -10,7 +10,7 @@ WHITE=(255,255,255)
 RED=(255,0,0)
 
 class DataPoint():
-    def __init__(self, value, position):
+    def __init__(self, value, position): #add color
         self.value=value
         self.position=position
         #self.color=color
@@ -33,6 +33,7 @@ class App(SampleBase):
                 else:
                     self.bubbleSortStep()
                     #self.selectionSortStep()
+                    #self.insertionSort()
                 time.sleep(0.1)
                 
 
@@ -50,7 +51,6 @@ class App(SampleBase):
             v = random.choice(val)
             val.remove(v)
             self.dpList.append(DataPoint(v,p))
-
         #self.dpList.sort(key = lambda x: x.position)
 
     def isSorted(self):
@@ -78,5 +78,4 @@ if __name__ == "__main__":
     app = App()
     if (not app.process()):
         app.print_help()
-
 
