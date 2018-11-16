@@ -80,11 +80,13 @@ class App(SampleBase):
         for i in range(0, len(self.dpList)-1):
             min_index = i
             self.draw(RED)
-            time.sleep(0.1)
+            time.sleep(5)
+            '''
             for j in range(i+1, len(self.dpList)):
                 if self.dpList[min_index].value > self.dpList[j].value:
                     min_index = j
                 self.dpList[j].value, self.dpList[min_index] = self.dpList[min_index], self.dpList[j].value
+            '''
         self.draw(GREEN)
         time.sleep(5)
 
