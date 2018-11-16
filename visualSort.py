@@ -66,6 +66,7 @@ class App(SampleBase):
         return True
 
     def bubbleSort(self):
+        tic = time.clock()
         n = len(self.dpList)
         for i in range(0, n):
             self.draw(RED)
@@ -74,10 +75,14 @@ class App(SampleBase):
 
                 if self.dpList[j].value > self.dpList[j+1].value:
                     self.dpList[j].value, self.dpList[j+1].value = self.dpList[j+1].value, self.dpList[j].value
+        toc = time.clock()
+        print("Bubble Sort time: ", end="")
+        print(toc - tic)
         self.draw(GREEN)
         time.sleep(5)
                 
     def selectionSort(self):
+        tic = time.clock()
         n = len(self.dpList)
         for i in range(0, n):
             min_index = i
@@ -87,7 +92,9 @@ class App(SampleBase):
                 if self.dpList[min_index].value > self.dpList[j].value:
                     min_index = j
             self.dpList[i].value, self.dpList[min_index].value = self.dpList[min_index].value, self.dpList[i].value
-
+        toc = time.clock()
+        print("Selection Sort time: ", end="")
+        print(toc-tic)
         self.draw(GREEN)
         time.sleep(5)
 
