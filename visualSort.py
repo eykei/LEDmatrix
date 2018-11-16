@@ -1,7 +1,7 @@
 from samplebase import SampleBase
 import time, random
 
-# sudo python3 LEDmatrix.py --led-mapper="U-mapper" --led-chain=4
+# sudo python3 visualSort.py --led-mapper="U-mapper" --led-chain=4
 
 MATRIXLENGTH=64
 #ACTIVE=(255,255,255)
@@ -66,19 +66,19 @@ class App(SampleBase):
     def bubbleSort(self):
         n = len(self.dpList)
         for i in range(n):
-            self.draw(RED)
-            time.sleep(0.1)
             for j in range(0, n-i-1):
+                self.draw(RED)
+                time.sleep(0.1)
                 if self.dpList[i].value > self.dpList[i+1].value:
                     self.dpList[i].value, self.dpList[i+1].value = self.dpList[i+1].value, self.dpList[i].value
         time.sleep(5)
                 
     def selectionSort(self):
         for i in range(len(self.dpList)):
-            self.draw(RED)
-            time.sleep(0.1)
             min_index = i
             for j in range(i+1, len(self.dpList)):
+                self.draw(RED)
+                time.sleep(0.1)
                 if self.dpList[min_index].value > self.dpList[j].value:
                     min_index = j
             self.dpList[i].value, self.dpList[min_index] = self.dpList[min_index], self.dpList[i].value
