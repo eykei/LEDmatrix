@@ -66,9 +66,10 @@ class App(SampleBase):
     def bubbleSort(self):
         n = len(self.dpList)
         for i in range(0, n-1):
+            self.draw(RED)
+            time.sleep(0.1)
             for j in range(0, n-i-1):
-                self.draw(RED)
-                time.sleep(0.1)
+
                 if self.dpList[j].value > self.dpList[j+1].value:
                     self.dpList[j].value, self.dpList[j+1].value = self.dpList[j+1].value, self.dpList[j].value
 
@@ -77,9 +78,9 @@ class App(SampleBase):
     def selectionSort(self):
         for i in range(len(self.dpList)):
             min_index = i
+            self.draw(RED)
+            time.sleep(0.1)
             for j in range(i+1, len(self.dpList)):
-                self.draw(RED)
-                time.sleep(0.1)
                 if self.dpList[min_index].value > self.dpList[j].value:
                     min_index = j
             self.dpList[j].value, self.dpList[min_index] = self.dpList[min_index], self.dpList[j].value
