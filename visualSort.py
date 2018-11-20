@@ -27,7 +27,7 @@ class App(SampleBase):
             self.initializeDataPoints()
             while True:
                 if self.isSorted():
-                    time.sleep(5)
+                    time.sleep(1)
                     break
                 else:
                     self.bubbleSort(self.dpList)
@@ -59,7 +59,7 @@ class App(SampleBase):
             values.remove(v)
             self.dpList.append(DataPoint(v, p))
         self.draw(self.dpList, WHITE)
-        time.sleep(3)
+        time.sleep(2)
         #self.dpList.sort(key = lambda x: x.position)
 
     def isSorted(self):
@@ -73,7 +73,7 @@ class App(SampleBase):
         n = len(arr)
         for i in range(0, n):
             self.draw(arr, RED)
-            time.sleep(0.1)
+            time.sleep(0.05)
             for j in range(0, n-i-1):
 
                 if arr[j].value > arr[j+1].value:
@@ -83,7 +83,7 @@ class App(SampleBase):
         print(toc - tic)
         if self.isSorted():
             self.draw(arr, GREEN)
-            time.sleep(5)
+            time.sleep(1)
         else:
             self.draw(arr, YELLOW)
 
@@ -94,7 +94,7 @@ class App(SampleBase):
         for i in range(0, n):
             min_index = i
             self.draw(arr, RED)
-            time.sleep(0.1)
+            time.sleep(0.05)
             for j in range(i+1, n):
                 if arr[min_index].value > arr[j].value:
                     min_index = j
@@ -104,7 +104,7 @@ class App(SampleBase):
         print(toc-tic)
         if self.isSorted():
             self.draw(arr, GREEN)
-            time.sleep(5)
+            time.sleep(1)
         else:
             self.draw(arr, YELLOW)
 
@@ -114,7 +114,7 @@ class App(SampleBase):
         n = len(arr)
         for i in range(0,n):
             self.draw(arr, RED)
-            time.sleep(0.1)
+            time.sleep(0.05)
             key = arr[i].value
             j = i-1
             while j >= 0 and key < arr[j].value:
@@ -126,14 +126,14 @@ class App(SampleBase):
         print(toc-tic)
         if self.isSorted():
             self.draw(arr, GREEN)
-            time.sleep(5)
+            time.sleep(1)
         else:
             self.draw(arr, YELLOW)
 
 
     def mergeSort(self, arr):
         self.draw(arr, RED)
-        time.sleep(0.1)
+        time.sleep(0.05)
         n = len(arr)
         if n > 1:
             M = n//2
@@ -165,7 +165,7 @@ class App(SampleBase):
                 k += 1
         if self.isSorted():
             self.draw(arr, GREEN)
-            time.sleep(5)
+            time.sleep(1)
         else:
             self.draw(arr, YELLOW)
 
