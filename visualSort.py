@@ -9,6 +9,7 @@ MATRIXLENGTH=64
 WHITE=(255,255,255)
 RED=(255,0,0)
 GREEN=(0,255,0)
+YELLOW=(255,255,0)
 
 class DataPoint():
     def __init__(self, value, position): #add color
@@ -29,11 +30,12 @@ class App(SampleBase):
                     time.sleep(5)
                     break
                 else:
-                    self.bubbleSort()
+                    # self.bubbleSort()
+                    # self.initializeDataPoints()
+                    # self.selectionSort()
+                    # self.initializeDataPoints()
+                    self.insertionSort()
                     self.initializeDataPoints()
-                    self.selectionSort()
-                    self.initializeDataPoints()
-                    #self.insertionSort()
 
                 
 
@@ -78,8 +80,12 @@ class App(SampleBase):
         toc = time.clock()
         print("Bubble Sort time: ", end="")
         print(toc - tic)
-        self.draw(GREEN)
-        time.sleep(5)
+        if self.isSorted():
+            self.draw(GREEN)
+            time.sleep(5)
+        else:
+            self.draw(YELLOW)
+
                 
     def selectionSort(self):
         tic = time.clock()
@@ -95,11 +101,33 @@ class App(SampleBase):
         toc = time.clock()
         print("Selection Sort time: ", end="")
         print(toc-tic)
-        self.draw(GREEN)
-        time.sleep(5)
+        if self.isSorted():
+            self.draw(GREEN)
+            time.sleep(5)
+        else:
+            self.draw(YELLOW)
+
+
+    def insertionSort(self):
+        tic = time.clock()
+        n = len(self.dpList)
+        for i in range(0,n):
+            key = self.dpList[i].value
+            j = i-1
+            while j >= 0 and key < self.dpList[j].value:
+                self.dpList[j+1].value = self.dpList[j].value
+                j -= 1
+            self.dpList[j+1].value = key
+        toc = time.clock()
+        print("Insertion Sort time: ", end="")
+        print(toc-tic)
+        if self.isSorted():
+            self.draw(GREEN)
+            time.sleep(5)
+        else:
+            self.draw(YELLOW)
 
 if __name__ == "__main__":
     app = App()
     if (not app.process()):
         app.print_help()
-
