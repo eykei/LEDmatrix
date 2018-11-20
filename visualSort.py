@@ -153,8 +153,7 @@ class App(SampleBase):
                     arr[k].value = R[j].value
                     j += 1
                 k += 1
-                self.draw(arr, RED)
-                time.sleep(0.1)
+
 
             while i < len(L):
                 arr[k].value = L[i].value
@@ -166,6 +165,8 @@ class App(SampleBase):
                 j += 1
                 k += 1
 
+            self.draw(arr, RED)
+            time.sleep(0.1)
 
 
 
