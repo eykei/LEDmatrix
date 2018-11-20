@@ -30,12 +30,12 @@ class App(SampleBase):
                     time.sleep(1)
                     break
                 else:
-                    self.bubbleSort(self.dpList)
-                    self.initializeDataPoints()
-                    self.selectionSort(self.dpList)
-                    self.initializeDataPoints()
-                    self.insertionSort(self.dpList)
-                    self.initializeDataPoints()
+                    # self.bubbleSort(self.dpList)
+                    # self.initializeDataPoints()
+                    # self.selectionSort(self.dpList)
+                    # self.initializeDataPoints()
+                    # self.insertionSort(self.dpList)
+                    # self.initializeDataPoints()
                     self.mergeSort(self.dpList)
                     self.initializeDataPoints()
                 
@@ -132,8 +132,7 @@ class App(SampleBase):
 
 
     def mergeSort(self, arr):
-        self.draw(arr, RED)
-        time.sleep(0.05)
+
         n = len(arr)
         if n > 1:
             M = n//2
@@ -163,11 +162,11 @@ class App(SampleBase):
                 arr[k].value = R[j].value
                 j += 1
                 k += 1
-        if self.isSorted():
-            self.draw(arr, GREEN)
-            time.sleep(1)
-        else:
-            self.draw(arr, YELLOW)
+
+            self.draw(arr, RED)
+            time.sleep(0.05)
+
+
 
 
 if __name__ == "__main__":
