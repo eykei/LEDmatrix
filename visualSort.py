@@ -20,7 +20,6 @@ class DataPoint():
 class App(SampleBase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.dpList = []
 
     def run(self):
         self.canvas = self.matrix.CreateFrameCanvas()
@@ -53,6 +52,7 @@ class App(SampleBase):
 
 
     def initializeDataPoints(self):
+        self.dpList = []
         values = [x for x in range(MATRIXLENGTH)]
         for p in range(MATRIXLENGTH):
             v = random.choice(values)
