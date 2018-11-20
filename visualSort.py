@@ -1,7 +1,7 @@
 from samplebase import SampleBase
 import time, random
 
-# sudo python3 visualSort.py --led-mapper="U-mapper" --led-chain=4
+# sudo python3 visualSort.py --led-pixel-mapper="U-mapper" --led-chain=4
 
 MATRIXLENGTH=64
 #ACTIVE=(255,255,255)
@@ -30,10 +30,10 @@ class App(SampleBase):
                     time.sleep(5)
                     break
                 else:
-                    # self.bubbleSort()
-                    # self.initializeDataPoints()
-                    # self.selectionSort()
-                    # self.initializeDataPoints()
+                    self.bubbleSort()
+                    self.initializeDataPoints()
+                    self.selectionSort()
+                    self.initializeDataPoints()
                     self.insertionSort()
                     self.initializeDataPoints()
 
