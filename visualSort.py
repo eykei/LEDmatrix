@@ -112,6 +112,8 @@ class App(SampleBase):
         tic = time.clock()
         n = len(self.dpList)
         for i in range(0,n):
+            self.draw(RED)
+            time.sleep(0.1)
             key = self.dpList[i].value
             j = i-1
             while j >= 0 and key < self.dpList[j].value:
