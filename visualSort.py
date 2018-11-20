@@ -44,7 +44,7 @@ class App(SampleBase):
         '''
         draw each point in datapoint list (dpList)
         '''
-        #self.canvas.Clear()
+        self.canvas.Clear()
         for dp in arr:
             for y in range(dp.value):
                 self.canvas.SetPixel(dp.position, 62-y, color[0],color[1],color[2]) #dp.color
@@ -60,7 +60,7 @@ class App(SampleBase):
             self.dpList.append(DataPoint(v, p))
         self.draw(self.dpList, WHITE)
         time.sleep(2)
-        self.canvas.Clear()
+        #self.canvas.Clear()
         #self.dpList.sort(key = lambda x: x.position)
 
     def isSorted(self):
@@ -131,8 +131,14 @@ class App(SampleBase):
         else:
             self.draw(arr, YELLOW)
 
-
     def mergeSort(self, arr):
+
+        sorted_arr = self.merge(self, arr)
+
+        self.draw(sorted_arr, RED)
+        time.sleep(1)
+
+    def merge(self, arr):
 
         n = len(arr)
         if n > 1:
@@ -164,8 +170,7 @@ class App(SampleBase):
                 j += 1
                 k += 1
 
-            self.draw(arr, RED)
-            time.sleep(0.05)
+            return arr
 
 
 
