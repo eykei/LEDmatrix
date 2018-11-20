@@ -133,7 +133,7 @@ class App(SampleBase):
 
     def mergeSort(self, arr):
 
-        sorted_arr = self.merge(self, arr)
+        sorted_arr = self.merge(arr)
 
         self.draw(sorted_arr, RED)
         time.sleep(1)
