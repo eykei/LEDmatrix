@@ -20,6 +20,7 @@ class DataPoint():
 class App(SampleBase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.dpList = []
 
     def run(self):
         self.canvas = self.matrix.CreateFrameCanvas()
@@ -30,34 +31,34 @@ class App(SampleBase):
                     time.sleep(5)
                     break
                 else:
-                    self.bubbleSort()
+                    self.bubbleSort(self.dpList)
                     self.initializeDataPoints()
-                    self.selectionSort()
+                    self.selectionSort(self.dpList)
                     self.initializeDataPoints()
-                    self.insertionSort()
+                    self.insertionSort(self.dpList)
                     self.initializeDataPoints()
-
+                    self.mergeSort(self.dpList)
+                    self.initializeDataPoints()
                 
 
-    def draw(self, color):
+    def draw(self, arr, color):
         '''
         draw each point in datapoint list (dpList)
         '''
         self.canvas.Clear()
-        for dp in self.dpList:
+        for dp in arr:
             for y in range(dp.value):
                 self.canvas.SetPixel(dp.position, 62-y, color[0],color[1],color[2]) #dp.color
         self.matrix.SwapOnVSync(self.canvas)
 
 
     def initializeDataPoints(self):
-        self.dpList=[]
         values = [x for x in range(MATRIXLENGTH)]
         for p in range(MATRIXLENGTH):
             v = random.choice(values)
             values.remove(v)
             self.dpList.append(DataPoint(v, p))
-        self.draw(WHITE)
+        self.draw(self.dpList, WHITE)
         time.sleep(3)
         #self.dpList.sort(key = lambda x: x.position)
 
@@ -67,67 +68,107 @@ class App(SampleBase):
                 return False
         return True
 
-    def bubbleSort(self):
+    def bubbleSort(self, arr):
         tic = time.clock()
-        n = len(self.dpList)
+        n = len(arr)
         for i in range(0, n):
-            self.draw(RED)
+            self.draw(arr, RED)
             time.sleep(0.1)
             for j in range(0, n-i-1):
 
-                if self.dpList[j].value > self.dpList[j+1].value:
-                    self.dpList[j].value, self.dpList[j+1].value = self.dpList[j+1].value, self.dpList[j].value
+                if arr[j].value > arr[j+1].value:
+                    arr[j].value, arr[j+1].value = arr[j+1].value, arr[j].value
         toc = time.clock()
         print("Bubble Sort time: ", end="")
         print(toc - tic)
         if self.isSorted():
-            self.draw(GREEN)
+            self.draw(arr, GREEN)
             time.sleep(5)
         else:
-            self.draw(YELLOW)
+            self.draw(arr, YELLOW)
 
                 
-    def selectionSort(self):
+    def selectionSort(self, arr):
         tic = time.clock()
-        n = len(self.dpList)
+        n = len(arr)
         for i in range(0, n):
             min_index = i
-            self.draw(RED)
+            self.draw(arr, RED)
             time.sleep(0.1)
             for j in range(i+1, n):
-                if self.dpList[min_index].value > self.dpList[j].value:
+                if arr[min_index].value > arr[j].value:
                     min_index = j
-            self.dpList[i].value, self.dpList[min_index].value = self.dpList[min_index].value, self.dpList[i].value
+            arr[i].value, arr[min_index].value = arr[min_index].value, arr[i].value
         toc = time.clock()
         print("Selection Sort time: ", end="")
         print(toc-tic)
         if self.isSorted():
-            self.draw(GREEN)
+            self.draw(arr, GREEN)
             time.sleep(5)
         else:
-            self.draw(YELLOW)
+            self.draw(arr, YELLOW)
 
 
-    def insertionSort(self):
+    def insertionSort(self, arr):
         tic = time.clock()
-        n = len(self.dpList)
+        n = len(arr)
         for i in range(0,n):
-            self.draw(RED)
+            self.draw(arr, RED)
             time.sleep(0.1)
-            key = self.dpList[i].value
+            key = arr[i].value
             j = i-1
-            while j >= 0 and key < self.dpList[j].value:
-                self.dpList[j+1].value = self.dpList[j].value
+            while j >= 0 and key < arr[j].value:
+                arr[j+1].value = arr[j].value
                 j -= 1
-            self.dpList[j+1].value = key
+            arr[j+1].value = key
         toc = time.clock()
         print("Insertion Sort time: ", end="")
         print(toc-tic)
         if self.isSorted():
-            self.draw(GREEN)
+            self.draw(arr, GREEN)
             time.sleep(5)
         else:
-            self.draw(YELLOW)
+            self.draw(arr, YELLOW)
+
+
+    def mergeSort(self, arr):
+        n = len(arr)
+        if n > 1:
+            M = n//2
+            L = arr[:M]
+            R = arr[M:]
+
+            self.mergeSort(L)
+            self.mergeSort(R)
+
+            i = j = k = 0
+
+            while i < len(L) and j < len(R):
+                self.draw(arr, RED)
+                time.sleep(0.1)
+                if L[i] < R[j]:
+                    arr[k].value = L[i]
+                    i += 1
+                else:
+                    arr[k].value = R[j]
+                    j += 1
+                k += 1
+
+            while i < len(L):
+                arr[k].value = L[i]
+                i += 1
+                k += 1
+
+            while j < len(R):
+                arr[k].value = R[i]
+                j += 1
+                k += 1
+        if self.isSorted():
+            self.draw(arr, GREEN)
+            time.sleep(5)
+        else:
+            self.draw(arr, YELLOW)
+
 
 if __name__ == "__main__":
     app = App()
