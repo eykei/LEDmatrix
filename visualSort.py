@@ -133,7 +133,6 @@ class App(SampleBase):
 
 
     def mergeSort(self, arr):
-
         n = len(arr)
         if n > 1:
             M = n//2
@@ -148,24 +147,23 @@ class App(SampleBase):
             while i < len(L) and j < len(R):
                 if L[i].value < R[j].value:
                     arr[k].value = L[i].value
-                    arr[k].position = k
+                    arr[k].position = L[i].position
                     i += 1
                 else:
                     arr[k].value = R[j].value
-                    arr[k].position = k
+                    arr[k].position = R[i].position
                     j += 1
                 k += 1
 
-
             while i < len(L):
                 arr[k].value = L[i].value
-                arr[k].position = k
+                arr[k].position = L[i].position
                 i += 1
                 k += 1
 
             while j < len(R):
                 arr[k].value = R[j].value
-                arr[k].position = k
+                arr[k].position = R[i].position
                 j += 1
                 k += 1
 
