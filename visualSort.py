@@ -30,14 +30,14 @@ class App(SampleBase):
                     time.sleep(1)
                     break
                 else:
-                    # self.bubbleSort(self.dpList)
-                    # self.initializeDataPoints()
-                    # self.selectionSort(self.dpList)
-                    # self.initializeDataPoints()
-                    # self.insertionSort(self.dpList)
-                    # self.initializeDataPoints()
-                    self.mergeSort(self.dpList)
+                    self.bubbleSort(self.dpList)
                     self.initializeDataPoints()
+                    self.selectionSort(self.dpList)
+                    self.initializeDataPoints()
+                    self.insertionSort(self.dpList)
+                    self.initializeDataPoints()
+                    # self.mergeSort(self.dpList)
+                    # self.initializeDataPoints()
                 
 
     def draw(self, arr, color):
@@ -133,8 +133,6 @@ class App(SampleBase):
 
 
     def mergeSort(self, arr):
-
-
         n = len(arr)
         if n > 1:
             M = n//2
