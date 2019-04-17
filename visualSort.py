@@ -24,21 +24,25 @@ class App(SampleBase):
     def run(self):
         self.canvas = self.matrix.CreateFrameCanvas()
         while True:
-            self.dpList = self.initializeDataPoints()
-            self.isSorted(self.dpList)
-            self.dpList = self.bubbleSort(self.dpList)
-            self.isSorted(self.dpList)
+            # self.dpList = self.initializeDataPoints()
+            # self.isSorted(self.dpList)
+            # self.dpList = self.bubbleSort(self.dpList)
+            # self.isSorted(self.dpList)
+            #
+            # self.dpList = self.initializeDataPoints()
+            # self.isSorted(self.dpList)
+            # self.dpList = self.selectionSort(self.dpList)
+            # self.isSorted(self.dpList)
+            #
+            # self.dpList = self.initializeDataPoints()
+            # self.isSorted(self.dpList)
+            # self.dpList = self.insertionSort(self.dpList)
+            # self.isSorted(self.dpList)
 
             self.dpList = self.initializeDataPoints()
             self.isSorted(self.dpList)
-            self.dpList = self.selectionSort(self.dpList)
+            self.dpList = self.mergeSort(self.dpList)
             self.isSorted(self.dpList)
-
-            self.dpList = self.initializeDataPoints()
-            self.isSorted(self.dpList)
-            self.dpList = self.insertionSort(self.dpList)
-            self.isSorted(self.dpList)
-
 
     def initializeDataPoints(self):
         datapoints = []
