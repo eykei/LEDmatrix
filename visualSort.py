@@ -53,11 +53,12 @@ class App(SampleBase):
         arr is a list of datapoint instances
         color is a tuple with 3 values (R, G, B) 0-255
         '''
-        self.canvas.Clear()
+        # self.canvas.Clear()
         for datapoint in arr:
-            for y in range(datapoint.value):
+            for y in range(MATRIXLENGTH):
                 self.canvas.SetPixel(datapoint.position, 62 - y, 0, 0, 0)
-                self.canvas.SetPixel(datapoint.position, 62-y, color[0],color[1],color[2])
+            for y in range(datapoint.value):
+                self.canvas.SetPixel(datapoint.position, 62 - y, color[0],color[1],color[2])
         self.matrix.SwapOnVSync(self.canvas)
 
     def isSorted(self, arr):
