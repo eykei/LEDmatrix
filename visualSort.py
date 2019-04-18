@@ -163,9 +163,6 @@ class App(SampleBase):
                 j += 1
                 k += 1
 
-            self.draw(arr, RED)
-            time.sleep(0.05)
-
             return arr
 
 
