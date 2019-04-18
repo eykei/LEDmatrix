@@ -127,7 +127,8 @@ class App(SampleBase):
 
 
     def mergeSort(self, arr):
-
+        self.draw(arr, RED)
+        time.sleep(0.05)
         n = len(arr)
         if n > 1:
             M = n // 2
