@@ -1,5 +1,6 @@
 from samplebase import SampleBase
 import time, random
+import itertools
 
 # sudo python3 visualSort.py --led-pixel-mapper="U-mapper" --led-chain=4
 
@@ -19,30 +20,21 @@ class DataPoint():
 
 class App(SampleBase):
     def __init__(self, *args, **kwargs):
+        self.dpList=[]
         super().__init__(*args, **kwargs)
 
     def run(self):
-        self.canvas = self.matrix.CreateFrameCanvas()
-        while True:
-            self.dpList = self.initializeDataPoints()
-            self.isSorted(self.dpList)
-            self.dpList = self.bubbleSort(self.dpList)
-            self.isSorted(self.dpList)
-            #
-            # self.dpList = self.initializeDataPoints()
-            # self.isSorted(self.dpList)
-            # self.dpList = self.selectionSort(self.dpList)
-            # self.isSorted(self.dpList)
-            #
-            # self.dpList = self.initializeDataPoints()
-            # self.isSorted(self.dpList)
-            # self.dpList = self.insertionSort(self.dpList)
-            # self.isSorted(self.dpList)
 
+        algorithms = [self.bubbleSort(self.dpList), self.insertionSort(self.dpList), self.selectionSort(self.dpList)]
+        algorithms_cycle = itertools.cycle(algorithms)
+
+        self.canvas = self.matrix.CreateFrameCanvas()
+        for algorithm in algorithms_cycle:
             self.dpList = self.initializeDataPoints()
             self.isSorted(self.dpList)
-            self.dpList = self.mergeSort(self.dpList)
+            self.dpList = algorithm(self.dpList)
             self.isSorted(self.dpList)
+
 
     def initializeDataPoints(self):
         datapoints = []
