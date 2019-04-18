@@ -33,7 +33,6 @@ class App(SampleBase):
             self.dpList = self.initializeDataPoints()
             self.isSorted(self.dpList)
             self.dpList = algorithm(self.dpList)
-            self.draw(self.dpList, RED)
             time.sleep(3)
             self.isSorted(self.dpList)
 
@@ -129,14 +128,15 @@ class App(SampleBase):
 
     def mergeSort(self, arr):
 
+
+
         n = len(arr)
         if n > 1:
             M = n // 2
             L = arr[:M]
             R = arr[M:]
 
-            self.draw(arr, RED)
-            time.sleep(0.05)
+
 
             self.mergeSort(L)
             self.mergeSort(R)
@@ -166,7 +166,10 @@ class App(SampleBase):
                 j += 1
                 k += 1
 
-        return arr
+            self.draw(arr, RED)
+            time.sleep(0.05)
+
+            return arr
 
 
 
