@@ -20,12 +20,11 @@ class DataPoint():
 
 class App(SampleBase):
     def __init__(self, *args, **kwargs):
-        self.dpList=[]
         super().__init__(*args, **kwargs)
 
     def run(self):
 
-        algorithms = [self.bubbleSort(self.dpList), self.insertionSort(self.dpList), self.selectionSort(self.dpList)]
+        algorithms = [self.bubbleSort, self.insertionSort, self.selectionSort]
         algorithms_cycle = itertools.cycle(algorithms)
 
         self.canvas = self.matrix.CreateFrameCanvas()
