@@ -153,11 +153,17 @@ class App(SampleBase):
                     j += 1
                 k += 1
 
+                self.draw(arr, RED)
+                time.sleep(0.1)
+
             while i < len(L):
                 arr[k].value = L[i].value
                 arr[k].position = L[i].position
                 i += 1
                 k += 1
+
+                self.draw(arr, RED)
+                time.sleep(0.1)
 
             while j < len(R):
                 arr[k].value = R[j].value
@@ -165,8 +171,11 @@ class App(SampleBase):
                 j += 1
                 k += 1
 
-            self.draw(arr, RED)
-            time.sleep(0.1)
+                self.draw(arr, RED)
+                time.sleep(0.1)
+        return arr
+
+
 
 if __name__ == "__main__":
     app = App()
