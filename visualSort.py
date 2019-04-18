@@ -33,7 +33,10 @@ class App(SampleBase):
             self.dpList = self.initializeDataPoints()
             self.isSorted(self.dpList)
             self.dpList = algorithm(self.dpList)
+            self.draw(self.dpList, RED)
+            time.sleep(3)
             self.isSorted(self.dpList)
+
 
 
     def initializeDataPoints(self):
@@ -162,7 +165,6 @@ class App(SampleBase):
                 arr[k].position = R[j].position
                 j += 1
                 k += 1
-
 
         return arr
 
