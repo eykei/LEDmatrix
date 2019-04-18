@@ -24,10 +24,10 @@ class App(SampleBase):
     def run(self):
         self.canvas = self.matrix.CreateFrameCanvas()
         while True:
-            # self.dpList = self.initializeDataPoints()
-            # self.isSorted(self.dpList)
-            # self.dpList = self.bubbleSort(self.dpList)
-            # self.isSorted(self.dpList)
+            self.dpList = self.initializeDataPoints()
+            self.isSorted(self.dpList)
+            self.dpList = self.bubbleSort(self.dpList)
+            self.isSorted(self.dpList)
             #
             # self.dpList = self.initializeDataPoints()
             # self.isSorted(self.dpList)
@@ -65,6 +65,7 @@ class App(SampleBase):
         self.canvas.Clear()
         for datapoint in arr:
             for y in range(datapoint.value):
+                self.canvas.SetPixel(datapoint.position, 62 - y, 0, 0, 0)
                 self.canvas.SetPixel(datapoint.position, 62-y, color[0],color[1],color[2])
         self.matrix.SwapOnVSync(self.canvas)
 
@@ -153,8 +154,7 @@ class App(SampleBase):
                     j += 1
                 k += 1
 
-                self.draw(arr, RED)
-                time.sleep(0.1)
+
 
             while i < len(L):
                 arr[k].value = L[i].value
@@ -162,8 +162,7 @@ class App(SampleBase):
                 i += 1
                 k += 1
 
-                self.draw(arr, RED)
-                time.sleep(0.1)
+
 
             while j < len(R):
                 arr[k].value = R[j].value
