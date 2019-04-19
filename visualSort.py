@@ -11,6 +11,7 @@ WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 YELLOW = (255, 255, 0)
+BLUE = (0, 255, 255)
 
 class DataPoint():
     def __init__(self, value, position): #add color
@@ -33,7 +34,7 @@ class App(SampleBase):
             self.dpList = self.initializeDataPoints()
             self.isSorted(self.dpList)
             algorithm(self.dpList)
-            self.draw(self.dpList)
+            self.draw(self.dpList, BLUE)
             time.sleep(3)
             self.isSorted(self.dpList)
 
