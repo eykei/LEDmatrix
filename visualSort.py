@@ -33,6 +33,7 @@ class App(SampleBase):
             self.dpList = self.initializeDataPoints()
             self.isSorted(self.dpList)
             algorithm(self.dpList)
+            self.draw(self.dpList)
             time.sleep(3)
             self.isSorted(self.dpList)
 
