@@ -26,7 +26,7 @@ class App(SampleBase):
     def run(self):
 
         # algorithms = [self.bubbleSort, self.selectionSort, self.insertionSort]
-        algorithms = [self.mergeSort]
+        algorithms = [self.bubbleSort, self.mergeSort]
         algorithms_cycle = itertools.cycle(algorithms)
 
         self.canvas = self.matrix.CreateFrameCanvas()
@@ -34,10 +34,9 @@ class App(SampleBase):
             self.dpList = self.initializeDataPoints()
             self.isSorted(self.dpList)
             algorithm(self.dpList)
-            self.draw(self.dpList, BLUE)
-            time.sleep(3)
+            for i in range(MATRIXLENGTH):
+                print(self.dpList[i].value)
             self.isSorted(self.dpList)
-
 
 
     def initializeDataPoints(self):
