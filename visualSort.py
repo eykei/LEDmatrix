@@ -127,9 +127,8 @@ class App(SampleBase):
 
     def mergeSort(self, arr):
 
-        self.draw(arr, RED)
-        time.sleep(0.05)
-        
+
+
         n = len(arr)
         if n > 1:
             M = n // 2
@@ -163,6 +162,9 @@ class App(SampleBase):
                 #arr[k].position = R[j].position
                 j += 1
                 k += 1
+
+            self.draw(arr, RED)
+            time.sleep(0.05)
 
 
 
