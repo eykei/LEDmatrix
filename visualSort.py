@@ -140,24 +140,20 @@ class App(SampleBase):
 
             while i < len(L) and j < len(R):
                 if L[i].value < R[j].value:
-                    arr[k] = L[i]
-                    #arr[k].position = L[i].position
+                    arr[k].position = L[i].position
                     i += 1
                 else:
-                    arr[k] = R[j]
-                    #arr[k].position = R[j].position
+                    arr[k].position = R[j].position
                     j += 1
                 k += 1
 
             while i < len(L):
-                arr[k] = L[i]
-                #arr[k].position = L[i].position
+                arr[k].position = L[i].position
                 i += 1
                 k += 1
 
             while j < len(R):
-                arr[k] = R[j]
-                #arr[k].position = R[j].position
+                arr[k].position = R[j].position
                 j += 1
                 k += 1
 
