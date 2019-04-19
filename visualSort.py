@@ -32,7 +32,7 @@ class App(SampleBase):
         for algorithm in algorithms_cycle:
             self.dpList = self.initializeDataPoints()
             self.isSorted(self.dpList)
-            self.dpList = algorithm(self.dpList)
+            algorithm(self.dpList)
             time.sleep(3)
             self.isSorted(self.dpList)
 
@@ -88,7 +88,6 @@ class App(SampleBase):
         toc = time.clock()
         print("Bubble Sort time: ", end="")
         print(toc - tic)
-        return arr
 
 
     def selectionSort(self, arr):
@@ -105,7 +104,6 @@ class App(SampleBase):
         toc = time.clock()
         print("Selection Sort time: ", end="")
         print(toc - tic)
-        return arr
 
 
     def insertionSort(self, arr):
@@ -123,7 +121,6 @@ class App(SampleBase):
         toc = time.clock()
         print("Insertion Sort time: ", end="")
         print(toc - tic)
-        return arr
 
 
     def mergeSort(self, arr):
@@ -164,8 +161,6 @@ class App(SampleBase):
 
             self.draw(arr, RED)
             time.sleep(0.05)
-
-            return arr
 
 
 
