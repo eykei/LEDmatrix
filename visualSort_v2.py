@@ -19,7 +19,7 @@ class App(SampleBase):
 
     def run(self):
         # algorithms = [self.bubbleSort, self.selectionSort, self.insertionSort]
-        algorithms = [self.selectionSort, self.bubbleSort]  #no parenthesis after name
+        algorithms = [self.insertionSort, self.selectionSort, self.bubbleSort]  #no parenthesis after name
         algorithms_cycle = itertools.cycle(algorithms)
         self.canvas = self.matrix.CreateFrameCanvas()
 
@@ -51,8 +51,8 @@ class App(SampleBase):
     def isSorted(self, arr):
         for i in range(MATRIXLENGTH-1):
             if arr[i] > arr[i+1]:
-                self.draw(i, arr[i], RED)
-                time.sleep(1)
+                # self.draw(i, arr[i], RED)
+                # time.sleep(1)
                 return False
             self.draw(i, arr[i], GREEN)
         time.sleep(1)
@@ -87,7 +87,6 @@ class App(SampleBase):
             self.draw(min_index, arr[min_index], RED)
 
 
-
     def insertionSort(self, arr):
         n = len(arr)
         for i in range(0, n):
@@ -95,9 +94,11 @@ class App(SampleBase):
             j = i - 1
             while j >= 0 and key < arr[j]:
                 arr[j + 1] = arr[j]
+                self.draw(j+1, arr[j+1], WHITE)
+                time.sleep(0.01)
+                self.draw(j+1, arr[j+1], RED)
                 j -= 1
             arr[j + 1] = key
-
 
 
     def mergeSort(self, arr):
