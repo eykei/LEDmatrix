@@ -98,11 +98,14 @@ class App(SampleBase):
             j = i - 1
             while j >= 0 and key < arr[j]:
                 arr[j + 1] = arr[j]
+                self.draw(j + 1, arr[j + 1], WHITE)
+                time.sleep(0.05)
+                self.draw(j + 1, arr[j + 1], RED)
                 j -= 1
             arr[j + 1] = key
             self.draw(j+1, arr[j+1], WHITE)
             time.sleep(0.05)
-            self.draw(j + 1, arr[j+1], WHITE)
+            self.draw(j + 1, arr[j+1], RED)
 
 
     def mergeSort(self, arr):
