@@ -53,8 +53,8 @@ class App(SampleBase):
                 self.draw(i, arr[i], GREEN)
                 self.draw(i+1, arr[i+1], GREEN)
             else:
-                self.draw(i, arr[i], RED)
-                self.draw(i+1, arr[i+1], RED)
+                for j in range(MATRIXLENGTH):
+                    self.draw(j, arr[j], RED)
                 time.sleep(5)
                 return False
         time.sleep(3)
