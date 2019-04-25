@@ -19,7 +19,7 @@ class App(SampleBase):
 
     def run(self):
         # algorithms = [self.bubbleSort, self.selectionSort, self.insertionSort]
-        algorithms = [self.insertionSort, self.selectionSort, self.bubbleSort]  #no parenthesis after name
+        algorithms = [self.mergeSort]  #no parenthesis after name
         algorithms_cycle = itertools.cycle(algorithms)
         self.canvas = self.matrix.CreateFrameCanvas()
 
@@ -117,32 +117,28 @@ class App(SampleBase):
             i = j = k = 0
 
             while i < len(L) and j < len(R):
-                if L[i].value < R[j].value:
-                    arr[k].value = L[i].value
+                if L[i] < R[j]:
+                    arr[k] = L[i]
+                    self.draw(k, arr[k], WHITE)
+                    time.sleep(0.01)
                     i += 1
                 else:
-                    arr[k].value = R[j].value
+                    arr[k] = R[j]
+                    self.draw(j, arr[j], WHITE)
+                    time.sleep(0.01)
                     j += 1
                 k += 1
 
             while i < len(L):
-                arr[k].value = L[i].value
+                arr[k] = L[i]
                 i += 1
                 k += 1
 
             while j < len(R):
-                arr[k].value = R[j].value
+                arr[k] = R[j]
                 j += 1
                 k += 1
-
-            self.draw(arr, RED)
-            time.sleep(0.05)
-
-
-
 
 
 if __name__ == "__main__":
     app = App()
-    if (not app.process()):
-        app.print_help()
