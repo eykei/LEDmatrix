@@ -104,7 +104,6 @@ class App(SampleBase):
 
 
     def mergeSort(self, arr):
-
         n = len(arr)
         if n > 1:
             M = n // 2
