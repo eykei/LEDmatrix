@@ -1,6 +1,5 @@
 from samplebase import SampleBase
-import time, random
-import itertools
+import time, random, itertools
 
 # sudo python3 visualSort.py --led-pixel-mapper="U-mapper" --led-chain=4
 
@@ -13,80 +12,63 @@ GREEN = (0, 255, 0)
 YELLOW = (255, 255, 0)
 BLUE = (0, 255, 255)
 
-class DataPoint():
-    def __init__(self, value, position): #add color
-        self.value=value
-        self.position=position
-        #self.color=color
 
 class App(SampleBase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
     def run(self):
-
         # algorithms = [self.bubbleSort, self.selectionSort, self.insertionSort]
-        algorithms = [self.mergeSort]
+        algorithms = [self.bubbleSort]
         algorithms_cycle = itertools.cycle(algorithms)
-
         self.canvas = self.matrix.CreateFrameCanvas()
+
         for algorithm in algorithms_cycle:
-            self.dpList = self.initializeDataPoints()
-            self.isSorted(self.dpList)
-            algorithm(self.dpList)
+            array = self.initializeDataPoints()
+            # self.isSorted(self.dpList)
+            algorithm(array)
             for i in range(MATRIXLENGTH):
-                print(self.dpList[i].value)
-            self.isSorted(self.dpList)
+                print(array)
+            # self.isSorted(self.dpList)
 
 
     def initializeDataPoints(self):
-        datapoints = []
-        values = random.sample(range(MATRIXLENGTH), MATRIXLENGTH)  # create distinct values for each column
-        for i in range(MATRIXLENGTH):
-            datapoints.append(DataPoint(values[i], i))
-        self.draw(datapoints, WHITE)
+        array = random.sample(range(MATRIXLENGTH), MATRIXLENGTH)
+        for i in range(len(array)):
+            self.draw(i, array[i], RED)
         time.sleep(2)
-        return datapoints
-        #self.dpList.sort(key = lambda x: x.position)
+        return array
 
-    def draw(self, arr, color):
-        '''
-        draw each point in datapoint list (dpList)
-        arr is a list of datapoint instances
-        color is a tuple with 3 values (R, G, B) 0-255
-        '''
-        # self.canvas.Clear()
-        for datapoint in arr:
-            for y in range(MATRIXLENGTH):
-                self.canvas.SetPixel(datapoint.position, 62 - y, 0, 0, 0)
-            for y in range(datapoint.value):
-                self.canvas.SetPixel(datapoint.position, 62 - y, color[0],color[1],color[2])
+
+    def draw(self, position, value, color):
+        for y in range(MATRIXLENGTH):
+            self.canvas.SetPixel(position, 62 - y, 0, 0, 0)
+        for y in range(value):
+            self.canvas.SetPixel(position, 62 - y, color[0], color[1], color[2])
         self.matrix.SwapOnVSync(self.canvas)
 
-    def isSorted(self, arr):
-        for i in range(MATRIXLENGTH-1):
-            if self.dpList[i].value > self.dpList[i+1].value:
-                self.draw(arr, YELLOW)
-                time.sleep(1)
-                return False
-        self.draw(arr, GREEN)
-        time.sleep(1)
-        return True
+    # def isSorted(self, arr):
+    #     for i in range(MATRIXLENGTH-1):
+    #         if self.dpList[i].value > self.dpList[i+1].value:
+    #             self.draw(arr, YELLOW)
+    #             time.sleep(1)
+    #             return False
+    #     self.draw(arr, GREEN)
+    #     time.sleep(1)
+    #     return True
 
 
     def bubbleSort(self, arr):
-        tic = time.clock()
         n = len(arr)
         for i in range(0, n):
-            self.draw(arr, RED)
-            time.sleep(0.05)
             for j in range(0, n - i - 1):
-
-                if arr[j].value > arr[j + 1].value:
-                    arr[j].value, arr[j + 1].value = arr[j + 1].value, arr[j].value
-        toc = time.clock()
-        print("Bubble Sort time: ", end="")
-        print(toc - tic)
+                if arr[j] > arr[j + 1]:
+                    arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                    self.draw(arr[j+1], WHITE)
+                    self.draw(arr[j], WHITE)
+                    time.sleep(0.05)
+                    self.draw(arr[j+1], RED)
+                    self.draw(arr[j], RED)
 
 
     def selectionSort(self, arr):
