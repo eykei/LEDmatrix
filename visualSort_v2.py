@@ -18,7 +18,7 @@ class App(SampleBase):
         super().__init__(*args, **kwargs)
 
     def run(self):
-        algorithms = [self.insertionSort] # no parenthesis after name
+        algorithms = [self.mergeSort] # no parenthesis after name
         algorithms_cycle = itertools.cycle(algorithms)
         self.canvas = self.matrix.CreateFrameCanvas()
 
@@ -85,7 +85,7 @@ class App(SampleBase):
             arr[i], arr[min_index] = arr[min_index], arr[i]
             self.draw(i, arr[i], WHITE)
             self.draw(min_index, arr[min_index], WHITE)
-            time.sleep(0.05)
+            time.sleep(0.01)
             self.draw(i, arr[i], RED)
             self.draw(min_index, arr[min_index], RED)
 
@@ -138,11 +138,17 @@ class App(SampleBase):
 
             while i < len(L):
                 arr[k] = L[i]
+                self.draw(k, arr[k], WHITE)
+                time.sleep(0.05)
+                self.draw(k, arr[k], RED)
                 i += 1
                 k += 1
 
             while j < len(R):
                 arr[k] = R[j]
+                self.draw(k, arr[k], WHITE)
+                time.sleep(0.05)
+                self.draw(k, arr[k], RED)
                 j += 1
                 k += 1
 
