@@ -53,7 +53,7 @@ class App(SampleBase):
                 self.draw(i+1, arr[i+1], GREEN)
             else:
                 for j in range(MATRIXLENGTH):
-                    self.draw(j, arr[j], RED)
+                    self.draw(j, arr[j], YELLOW)
                 time.sleep(5)
                 return False
         time.sleep(3)
@@ -98,9 +98,9 @@ class App(SampleBase):
             j = i - 1
             while j >= 0 and key < arr[j]:
                 arr[j + 1] = arr[j]
-                self.draw(j+1, arr[j+1], WHITE)
+                self.draw(j, arr[j], WHITE)
                 time.sleep(0.05)
-                self.draw(j+1, arr[j+1], RED)
+                self.draw(j, arr[j], RED)
                 j -= 1
             arr[j + 1] = key
 
