@@ -141,3 +141,5 @@ class App(SampleBase):
 
 if __name__ == "__main__":
     app = App()
+    if (not app.process()):
+        app.print_help()
