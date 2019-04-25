@@ -18,7 +18,7 @@ class App(SampleBase):
         super().__init__(*args, **kwargs)
 
     def run(self):
-        algorithms = [self.bubbleSort, self.selectionSort, self.insertionSort, self.mergeSort] # no parenthesis after name
+        algorithms = [self.insertionSort] # no parenthesis after name
         algorithms_cycle = itertools.cycle(algorithms)
         self.canvas = self.matrix.CreateFrameCanvas()
 
@@ -53,8 +53,8 @@ class App(SampleBase):
                 self.draw(i+1, arr[i+1], GREEN)
             else:
                 for j in range(MATRIXLENGTH):
-                    self.draw(j, arr[j], YELLOW)
-                time.sleep(5)
+                    self.draw(j, arr[j], RED)
+                time.sleep(1)
                 return False
         time.sleep(3)
         return True
@@ -98,11 +98,11 @@ class App(SampleBase):
             j = i - 1
             while j >= 0 and key < arr[j]:
                 arr[j + 1] = arr[j]
-                self.draw(j, arr[j], WHITE)
-                time.sleep(0.05)
-                self.draw(j, arr[j], RED)
                 j -= 1
             arr[j + 1] = key
+            self.draw(j+1, arr[j+1], WHITE)
+            time.sleep(0.05)
+            self.draw(j + 1, arr[j+1], WHITE)
 
 
     def mergeSort(self, arr):
