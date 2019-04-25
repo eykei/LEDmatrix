@@ -64,11 +64,11 @@ class App(SampleBase):
             for j in range(0, n - i - 1):
                 if arr[j] > arr[j + 1]:
                     arr[j], arr[j + 1] = arr[j + 1], arr[j]
-                    self.draw(arr[j+1], WHITE)
-                    self.draw(arr[j], WHITE)
+                    self.draw(j+1, arr[j+1], WHITE)
+                    self.draw(j, arr[j], WHITE)
                     time.sleep(0.05)
-                    self.draw(arr[j+1], RED)
-                    self.draw(arr[j], RED)
+                    self.draw(j+1, arr[j+1], RED)
+                    self.draw(j, arr[j], RED)
 
 
     def selectionSort(self, arr):
