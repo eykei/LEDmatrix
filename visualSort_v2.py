@@ -27,8 +27,7 @@ class App(SampleBase):
             array = self.initializeDataPoints()
             self.isSorted(array)
             algorithm(array)
-            for i in range(MATRIXLENGTH):
-                print(array)
+            print(array)
             self.isSorted(array)
 
 
@@ -50,12 +49,15 @@ class App(SampleBase):
 
     def isSorted(self, arr):
         for i in range(MATRIXLENGTH-1):
-            if arr[i] > arr[i+1]:
-                # self.draw(i, arr[i], RED)
-                # time.sleep(1)
+            if arr[i] < arr[i+1]:
+                self.draw(i, arr[i], GREEN)
+                self.draw(i+1, arr[i+1], GREEN)
+            else:
+                self.draw(i, arr[i], RED)
+                self.draw(i+1, arr[i+1], RED)
+                time.sleep(5)
                 return False
-            self.draw(i, arr[i], GREEN)
-        time.sleep(1)
+        time.sleep(3)
         return True
 
 
