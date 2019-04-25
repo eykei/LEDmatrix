@@ -120,11 +120,13 @@ class App(SampleBase):
                     arr[k] = L[i]
                     self.draw(k, arr[k], WHITE)
                     time.sleep(0.01)
+                    self.draw(k, arr[k], RED)
                     i += 1
                 else:
                     arr[k] = R[j]
                     self.draw(j, arr[j], WHITE)
                     time.sleep(0.01)
+                    self.draw(k, arr[k], RED)
                     j += 1
                 k += 1
 
