@@ -19,17 +19,17 @@ class App(SampleBase):
 
     def run(self):
         # algorithms = [self.bubbleSort, self.selectionSort, self.insertionSort]
-        algorithms = [self.bubbleSort]
+        algorithms = [self.selectionSort(), self.bubbleSort]
         algorithms_cycle = itertools.cycle(algorithms)
         self.canvas = self.matrix.CreateFrameCanvas()
 
         for algorithm in algorithms_cycle:
             array = self.initializeDataPoints()
-            # self.isSorted(self.dpList)
+            self.isSorted(array)
             algorithm(array)
             for i in range(MATRIXLENGTH):
                 print(array)
-            # self.isSorted(self.dpList)
+            self.isSorted(array)
 
 
     def initializeDataPoints(self):
@@ -47,15 +47,16 @@ class App(SampleBase):
             self.canvas.SetPixel(position, 62 - y, color[0], color[1], color[2])
         self.matrix.SwapOnVSync(self.canvas)
 
-    # def isSorted(self, arr):
-    #     for i in range(MATRIXLENGTH-1):
-    #         if self.dpList[i].value > self.dpList[i+1].value:
-    #             self.draw(arr, YELLOW)
-    #             time.sleep(1)
-    #             return False
-    #     self.draw(arr, GREEN)
-    #     time.sleep(1)
-    #     return True
+
+    def isSorted(self, arr):
+        for i in range(MATRIXLENGTH-1):
+            if arr[i] > arr[i+1]:
+                self.draw(i, arr[i], RED)
+                time.sleep(1)
+                return False
+            self.draw(i, arr[i], GREEN)
+        time.sleep(1)
+        return True
 
 
     def bubbleSort(self, arr):
@@ -66,42 +67,37 @@ class App(SampleBase):
                     arr[j], arr[j + 1] = arr[j + 1], arr[j]
                     self.draw(j+1, arr[j+1], WHITE)
                     self.draw(j, arr[j], WHITE)
-                    time.sleep(0.05)
+                    time.sleep(0.01)
                     self.draw(j+1, arr[j+1], RED)
                     self.draw(j, arr[j], RED)
 
 
     def selectionSort(self, arr):
-        tic = time.clock()
         n = len(arr)
         for i in range(0, n):
             min_index = i
-            self.draw(arr, RED)
-            time.sleep(0.05)
             for j in range(i + 1, n):
-                if arr[min_index].value > arr[j].value:
+                if arr[min_index] > arr[j]:
                     min_index = j
-            arr[i].value, arr[min_index].value = arr[min_index].value, arr[i].value
-        toc = time.clock()
-        print("Selection Sort time: ", end="")
-        print(toc - tic)
+            arr[i], arr[min_index] = arr[min_index], arr[i]
+            self.draw(i, arr[i], WHITE)
+            self.draw(min_index, arr[min_index], WHITE)
+            time.sleep(0.01)
+            self.draw(i, arr[i], RED)
+            self.draw(min_index, arr[min_index], RED)
+
 
 
     def insertionSort(self, arr):
-        tic = time.clock()
         n = len(arr)
         for i in range(0, n):
-            self.draw(arr, RED)
-            time.sleep(0.05)
-            key = arr[i].value
+            key = arr[i]
             j = i - 1
-            while j >= 0 and key < arr[j].value:
-                arr[j + 1].value = arr[j].value
+            while j >= 0 and key < arr[j]:
+                arr[j + 1] = arr[j]
                 j -= 1
-            arr[j + 1].value = key
-        toc = time.clock()
-        print("Insertion Sort time: ", end="")
-        print(toc - tic)
+            arr[j + 1] = key
+
 
 
     def mergeSort(self, arr):
