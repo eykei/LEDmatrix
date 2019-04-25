@@ -18,7 +18,7 @@ class App(SampleBase):
         super().__init__(*args, **kwargs)
 
     def run(self):
-        algorithms = [self.mergeSort] # no parenthesis after name
+        algorithms = [self.bubbleSort, self.insertionSort, self.selectionSort, self.mergeSort] # no parenthesis after name
         algorithms_cycle = itertools.cycle(algorithms)
         self.canvas = self.matrix.CreateFrameCanvas()
 
