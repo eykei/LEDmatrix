@@ -19,7 +19,7 @@ class App(SampleBase):
 
     def run(self):
         # algorithms = [self.bubbleSort, self.selectionSort, self.insertionSort]
-        algorithms = [self.selectionSort(), self.bubbleSort]
+        algorithms = [self.selectionSort, self.bubbleSort]  #no parenthesis after name
         algorithms_cycle = itertools.cycle(algorithms)
         self.canvas = self.matrix.CreateFrameCanvas()
 
