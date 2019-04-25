@@ -18,8 +18,7 @@ class App(SampleBase):
         super().__init__(*args, **kwargs)
 
     def run(self):
-        # algorithms = [self.bubbleSort, self.selectionSort, self.insertionSort]
-        algorithms = [self.mergeSort]  #no parenthesis after name
+        algorithms = [self.bubbleSort, self.selectionSort, self.insertionSort, self.mergeSort] # no parenthesis after name
         algorithms_cycle = itertools.cycle(algorithms)
         self.canvas = self.matrix.CreateFrameCanvas()
 
@@ -62,6 +61,7 @@ class App(SampleBase):
 
 
     def bubbleSort(self, arr):
+        # "bubble" highest values to the top
         n = len(arr)
         for i in range(0, n):
             for j in range(0, n - i - 1):
@@ -75,6 +75,7 @@ class App(SampleBase):
 
 
     def selectionSort(self, arr):
+        # find the minimum element of the unsorted part of the array and put it into the sorted part of the array
         n = len(arr)
         for i in range(0, n):
             min_index = i
@@ -84,12 +85,13 @@ class App(SampleBase):
             arr[i], arr[min_index] = arr[min_index], arr[i]
             self.draw(i, arr[i], WHITE)
             self.draw(min_index, arr[min_index], WHITE)
-            time.sleep(0.01)
+            time.sleep(0.05)
             self.draw(i, arr[i], RED)
             self.draw(min_index, arr[min_index], RED)
 
 
     def insertionSort(self, arr):
+        # pull each element and insert it into its place, shifting the position of elements after it if necessary
         n = len(arr)
         for i in range(0, n):
             key = arr[i]
@@ -97,13 +99,14 @@ class App(SampleBase):
             while j >= 0 and key < arr[j]:
                 arr[j + 1] = arr[j]
                 self.draw(j+1, arr[j+1], WHITE)
-                time.sleep(0.01)
+                time.sleep(0.05)
                 self.draw(j+1, arr[j+1], RED)
                 j -= 1
             arr[j + 1] = key
 
 
     def mergeSort(self, arr):
+        # break down array in to length 1 arrays, merge them back together recursively
         n = len(arr)
         if n > 1:
             M = n // 2
@@ -119,13 +122,13 @@ class App(SampleBase):
                 if L[i] < R[j]:
                     arr[k] = L[i]
                     self.draw(k, arr[k], WHITE)
-                    time.sleep(0.01)
+                    time.sleep(0.05)
                     self.draw(k, arr[k], RED)
                     i += 1
                 else:
                     arr[k] = R[j]
                     self.draw(j, arr[j], WHITE)
-                    time.sleep(0.01)
+                    time.sleep(0.05)
                     self.draw(k, arr[k], RED)
                     j += 1
                 k += 1
