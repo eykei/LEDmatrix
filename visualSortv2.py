@@ -51,9 +51,9 @@ class App(SampleBase):
 
     def draw(self, position, value, color):
         for y in range(MATRIXLENGTH):
-            self.canvas.SetPixel(position, 62 - y, 0, 0, 0)
+            self.canvas.SetPixel(position, 63 - y, 0, 0, 0)
         for y in range(value):
-            self.canvas.SetPixel(position, 62 - y, color[0], color[1], color[2])
+            self.canvas.SetPixel(position, 63 - y, color[0], color[1], color[2])
         self.matrix.SwapOnVSync(self.canvas)
 
 
