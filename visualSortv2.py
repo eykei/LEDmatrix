@@ -37,7 +37,6 @@ class App(SampleBase):
             array = self.initializeDataPoints()
             self.isSorted(array)
             algorithm(array)
-            print(array)
             self.isSorted(array)
 
 
