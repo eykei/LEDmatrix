@@ -73,6 +73,7 @@ class App(SampleBase):
 
     def bubbleSort(self, arr):
         # "bubble" highest values to the top
+        print("Bubble Sort")
         n = len(arr)
         for i in range(0, n):
             for j in range(0, n - i - 1):
@@ -87,6 +88,7 @@ class App(SampleBase):
 
     def selectionSort(self, arr):
         # find the minimum element of the unsorted part of the array and put it into the sorted part of the array
+        print("Selection Sort")
         n = len(arr)
         for i in range(0, n):
             min_index = i
@@ -103,6 +105,7 @@ class App(SampleBase):
 
     def insertionSort(self, arr):
         # pull each element and insert it into its place, shifting the position of elements after it if necessary
+        print("Insertion Sort")
         n = len(arr)
         for i in range(0, n):
             key = arr[i]
@@ -121,6 +124,7 @@ class App(SampleBase):
 
     def mergeSort(self, arr):
         # break down array in to length 1 arrays, merge them back together recursively
+        print("Merge Sort")
         n = len(arr)
         if n > 1:
             M = n // 2
