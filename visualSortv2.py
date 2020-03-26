@@ -42,7 +42,7 @@ class App(SampleBase):
 
 
     def initializeDataPoints(self):
-        array = random.sample(range(MATRIXLENGTH), MATRIXLENGTH)
+        array = random.sample(range(1, MATRIXLENGTH+1), MATRIXLENGTH)
         for i in range(len(array)):
             self.draw(i, array[i], RED)
         time.sleep(2)
